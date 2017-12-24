@@ -1,4 +1,31 @@
-<h2>Hello World</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style> .row:nth-child(even){ background-color: #f1f1f1; } </style>
+
+<div class="container-fluid">
+  <h1>Expenses</h1>
+  <hr></hr>
+    <div class="row">
+      <h1 class="col-xs-5 text-nowrap" style=""></h1>
+      <h1 class="col-xs-1" style=""><small>Monthly Remaining</small></h1>
+      <div class="col-xs-5"></div>
+      <h1 class="col-xs-1"></h1>
+    </div>
+  <hr></hr>
+  <% @categories.each do |category| %>
+    <div class="row">
+      <h1 class="col-xs-5 text-nowrap" style=""><%=category.name[0,13] %> <small class="<%= 'text-danger' if category.ytd < 0 %>">($<%=category.ytd%>)</small></h1>
+      <h1 class="col-xs-1 text-nowrap <%= 'text-danger' if category.remaining < 0 %>" style="">$<%=category.remaining%>
+      <% if category.remaining < 0 %>
+          <span class="glyphicon glyphicon-exclamation-sign"></span>
+      <% end %>
+      </h1>
+      <div class="col-xs-5"></div>
+      <div class="col-xs-1">
+        <button class="btn btn-block btn-lg btn-success glyphicon glyphicon-plus" type="button"></button>
+      </div>
+    </div>
+  <% end %>
+</div>
+
