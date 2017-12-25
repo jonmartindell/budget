@@ -11,9 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20171225194709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "heading"
+    t.integer  "budget"
+    t.boolean  "infrequent"
+    t.boolean  "expense"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.string   "note"
+    t.string   "merchant"
+    t.decimal  "amount"
+    t.date     "date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "transactions", ["category_id"], name: "index_transactions_on_category_id", using: :btree
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "password_hash"
+    t.string   "salt"
+    t.string   "display_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_foreign_key "transactions", "categories"
+  add_foreign_key "transactions", "users"
 end

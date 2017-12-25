@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  heading: MyString
+  budget: 1
+  infrequent: false
+  expense: false
+
+two:
+  name: MyString
+  heading: MyString
+  budget: 1
+  infrequent: false
+  expense: false
