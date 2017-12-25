@@ -10,32 +10,48 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-xs-2">
+      <%= link_to transactions_path, class: "btn btn-danger btn-block btn-lg"  do %>
+        <i class="glyphicon glyphicon-remove"></i>
+      <% end %>
+    </div>
+    <div class="col-xs-8">
+      <div class="form-group">
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, { class: "form-control" }) %>
+      </div>
+    </div>
+    <div class="col-xs-2">
+      <%= button_tag "", type: 'submit', class: "btn btn-success glyphicon glyphicon-ok btn-block btn-lg" %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <div class="input-group">
+        <div class="input-group-addon">$</div>
+        <%= f.text_field :amount, class: "form-control input-lg", placeholder: "Amount" %>
+        <div class="input-group-addon">.00</div>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.text_field :category_id %>
+
+  <div class="row">
+    <div class="form-group form-inline col-xs-12">
+      <%= f.date_select :date, {}, { class: "form-control" } %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_field :note %>
+
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <%= f.text_field :merchant, class: "form-control input-lg", placeholder: "Where?" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :merchant %><br>
-    <%= f.text_field :merchant %>
+
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <%= f.text_field :note, class: "form-control input-lg", placeholder: "Note" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :amount %><br>
-    <%= f.text_field :amount %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>
