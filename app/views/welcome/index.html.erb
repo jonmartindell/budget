@@ -15,11 +15,16 @@
   <hr></hr>
   <% @categories.each do |category| %>
     <div class="row">
-      <h1 class="col-xs-5 text-nowrap" style=""><%=category.name[0,13] %> <small class="<%= 'text-danger' if category.ytd < 0 %>">($<%=category.ytd%>)</small></h1>
-      <h1 class="col-xs-1 text-nowrap <%= 'text-danger' if category.remaining < 0 %>" style="">$<%=category.remaining%>
-      <% if category.remaining < 0 %>
-          <span class="glyphicon glyphicon-exclamation-sign"></span>
+      <h1 class="col-xs-5 text-nowrap" style=""><%=category.name[0,13] %> <small class="<%= 'text-success' if category.ytd < 0 %>">($<%=category.ytd%>)
+      <% if category.ytd < 0 %>
+        <span class="text-success glyphicon glyphicon-arrow-down"></span>
       <% end %>
+      <% if category.ytd == 100 %>
+        <span class="text-success glyphicon glyphicon-arrow-up"></span>
+      <% end %>
+        </small></h1>
+      <h1 class="col-xs-1 text-nowrap">
+        $<%=category.remaining%><small>/<%=category.budget%></small>
       </h1>
       <div class="col-xs-5"></div>
       <div class="col-xs-1">
