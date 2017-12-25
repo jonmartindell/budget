@@ -1,5 +1,9 @@
-<div class="container-fluid">
-  <h1>[category] Trans</h1>
+<div class="container">
+  <% if @transaction.category %>
+    <div class="row"> <h1 class="col-xs-12 text-nowrap"><%= @transaction.category.name %> Trans</h1> </div>
+  <% else %>
+    <div class="row"> <h1 class="col-xs-12 text-nowrap">New  Trans</h1> </div>
+  <% end %>
 
   <%= render 'form' %>
 

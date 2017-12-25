@@ -11,6 +11,14 @@
     </div>
   <% end %>
 
+  <% unless @transaction.category %>
+    <div class="row form-group">
+      <div class="col-xs-12">
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {:prompt => 'Choose a Category...'}, { class: "form-control" }) %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row form-group">
     <div class="form-group form-inline col-xs-12">
       <%= f.date_select :date, {}, { class: "form-control" } %>
@@ -21,7 +29,7 @@
     <div class="form-group col-xs-12">
       <div class="input-group">
         <div class="input-group-addon">$</div>
-        <%= f.text_field :amount, class: "form-control", placeholder: "Amount" %>
+        <%= f.number_field :amount, class: "form-control", placeholder: "Amount" %>
         <div class="input-group-addon">.00</div>
       </div>
     </div>
@@ -46,9 +54,6 @@
       <% end %>
     </div>
     <div class="col-xs-2">
-      <%# <div class="form-group"> %>
-      <%#   <%= f.collection_select(:category_id, Category.all, :id, :name, {}, { class: "form-control" }) %1> %>
-      <%# </div> %>
     </div>
     <div class="col-xs-5">
       <%= button_tag "", type: 'submit', class: "btn btn-success glyphicon glyphicon-ok btn-block" %>
