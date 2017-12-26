@@ -1,8 +1,8 @@
 <div class="container">
   <% if @transaction.category %>
-    <div class="row"> <h1 class="col-xs-12 text-nowrap"><%= @transaction.category.name %> Trans</h1> </div>
+    <div class="row"> <h3 class="col-xs-12 text-nowrap"><%= @transaction.category.name %> Trans</h3> </div>
   <% else %>
-    <div class="row"> <h1 class="col-xs-12 text-nowrap">New  Transaction</h1> </div>
+    <div class="row"> <h3 class="col-xs-12 text-nowrap">New  Transaction</h3> </div>
   <% end %>
 
   <%= render 'form' %>

@@ -14,7 +14,11 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/new
   def new
-    @transaction = Transaction.new
+    if params[:category]
+      @transaction = Transaction.new(category_id: params[:category])
+    else
+      @transaction = Transaction.new
+    end
   end
 
   # GET /transactions/1/edit

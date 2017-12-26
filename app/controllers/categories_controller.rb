@@ -1,5 +1,10 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :new_trans]
+
+  def new_trans
+    @transaction = Transaction.new(category: @category)
+    render "transactions/new"
+  end
 
   # GET /categories
   # GET /categories.json
