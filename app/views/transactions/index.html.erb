@@ -2,7 +2,7 @@
 
 <h1>Listing Transactions</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>User</th>
@@ -19,14 +19,13 @@
     <% @transactions.each do |transaction| %>
       <tr>
         <td><%= transaction.user %></td>
-        <td><%= transaction.category %></td>
-        <td><%= transaction.note %></td>
+        <td><%= transaction.category.name %></td>
         <td><%= transaction.merchant %></td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.date %></td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', transaction, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_transaction_path(transaction), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Transaction', new_transaction_path %>
+<%= link_to 'New Transaction', new_transaction_path, class: "btn btn-success" %>
