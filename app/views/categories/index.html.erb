@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @categories.where(expense: false).each do |category| %>
+    <% @categories.where(expense: false).order(:heading, :name).each do |category| %>
       <tr>
         <td><%= category.name %></td>
         <td><%= category.heading %></td>
@@ -55,7 +55,7 @@
   </thead>
 
   <tbody>
-    <% @categories.where(expense: true).each do |category| %>
+    <% @categories.where(expense: true).order(:heading, :name).each do |category| %>
       <tr>
         <td><%= category.name %></td>
         <td><%= category.heading %></td>
