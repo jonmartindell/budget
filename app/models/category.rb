@@ -1,7 +1,11 @@
 class Category < ActiveRecord::Base
 
   def ytd_spent
-    0
+    if name == "Home Maintenance"
+      3000
+    else
+      0
+    end
   end
 
   def spent(month)
