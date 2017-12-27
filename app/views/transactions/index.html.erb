@@ -5,7 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>User</th>
+      <th>Who</th>
       <th>Category</th>
       <th>Note</th>
       <th>Merchant</th>
@@ -18,7 +18,7 @@
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
-        <td><%= transaction.user %></td>
+        <td><%= transaction.user.try(:display_name) %></td>
         <td><%= transaction.category.name %></td>
         <td><%= transaction.merchant %></td>
         <td><%= transaction.amount %></td>

@@ -1,7 +1,18 @@
 <style> .category-rows:nth-child(even){ background-color: #f1f1f1; } </style>
+<p id="notice"><%= notice %></p>
 
 <div class="container-fluid">
-  <h2><%= @month %></h2>
+  <div class="row">
+    <h3 class="col-xs-12 text-center">
+      <%= link_to root_path(month: @prior_month) do %>
+        <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+      <% end %>
+      <%= @month %>
+      <%= link_to root_path(month: @next_month) do %>
+        <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+      <% end %>
+    </h3>
+  </div>
 
   <h4>Expenses</h4>
   <div class="row">
