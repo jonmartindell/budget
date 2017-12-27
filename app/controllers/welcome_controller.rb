@@ -2,7 +2,8 @@ class WelcomeController < ApplicationController
   def index
     @month = params.fetch(:month, default_month)
     @prior_month, @next_month = months_for(@month)
-    @categories = Category.order(:heading, :name).all.to_a.group_by(&:heading)
+    @expenses = Category.where(expense: true).order(:heading, :name).all.to_a.group_by(&:heading)
+    @incomes = Category.where(expense: false).order(:heading, :name).all.to_a.group_by(&:heading)
   end
 
   private
