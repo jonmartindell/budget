@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  default_scope order(:sort)
+  default_scope { order(:sort) }
 
   def ytd_spent(month)
     cutoff_date = month.to_date.beginning_of_month
