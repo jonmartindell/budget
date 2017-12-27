@@ -11,7 +11,9 @@
     </div>
   <% end %>
 
-  <% unless @transaction.category %>
+  <% if @transaction.category %>
+    <%= f.hidden_field :category_id, :value => @transaction.category.id %>
+  <% else %>
     <div class="row form-group">
       <div class="col-xs-12">
         <%= f.collection_select(:category_id, Category.all, :id, :name, {:prompt => 'Choose a Category...'}, { class: "form-control", required: true }) %>
