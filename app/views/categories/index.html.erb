@@ -9,6 +9,7 @@
       <th>Who</th>
       <th>Avg Monthly</th>
       <th>Infrequent</th>
+      <th>Sort</th>
       <th>Expense</th>
       <th colspan="2"></th>
     </tr>
@@ -21,6 +22,7 @@
         <td><%= category.heading %></td>
         <td><%= category.budget %></td>
         <td><%= category.infrequent %></td>
+        <td><%= category.sort %></td>
         <td><%= category.expense %></td>
         <td><%= link_to 'Edit', edit_category_path(category), class: "btn btn-default" %></td>
         <td><%= link_to 'Destroy', category, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %></td>
@@ -48,6 +50,7 @@
       <th>Heading</th>
       <th>Budget</th>
       <th>Infrequent</th>
+      <th>Sort</th>
       <th>Expense</th>
       <th colspan="2"></th>
     </tr>
@@ -60,6 +63,7 @@
         <td><%= category.heading %></td>
         <td><%= category.budget %></td>
         <td><%= category.infrequent %></td>
+        <td><%= category.sort %></td>
         <td><%= category.expense %></td>
         <td><%= link_to 'Edit', edit_category_path(category), class: "btn btn-default" %></td>
         <td><%= link_to 'Destroy', category, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %></td>
