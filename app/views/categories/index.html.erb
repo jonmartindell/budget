@@ -10,7 +10,6 @@
       <th>Avg Monthly</th>
       <th>Infrequent</th>
       <th>Sort</th>
-      <th>Expense</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -23,7 +22,6 @@
         <td><%= category.budget %></td>
         <td><%= category.infrequent %></td>
         <td><%= category.sort %></td>
-        <td><%= category.expense %></td>
         <td><%= link_to 'Edit', edit_category_path(category), class: "btn btn-default" %></td>
         <td><%= link_to 'Destroy', category, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -32,7 +30,6 @@
       <td><b>Total Income</b></td>
       <td></td>
       <td><b><%= @categories.where(expense:false).sum(:budget) %></b></td>
-      <td></td>
       <td></td>
       <td></td>
       <td></td>
@@ -51,7 +48,6 @@
       <th>Budget</th>
       <th>Infrequent</th>
       <th>Sort</th>
-      <th>Expense</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -64,7 +60,6 @@
         <td><%= category.budget %></td>
         <td><%= category.infrequent %></td>
         <td><%= category.sort %></td>
-        <td><%= category.expense %></td>
         <td><%= link_to 'Edit', edit_category_path(category), class: "btn btn-default" %></td>
         <td><%= link_to 'Destroy', category, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -73,7 +68,6 @@
       <td><b>Total Expenses</b></td>
       <td></td>
       <td><b><%= @categories.where(expense:true).sum(:budget) %></b></td>
-      <td></td>
       <td></td>
       <td></td>
       <td></td>
