@@ -19,7 +19,7 @@
       <tr>
         <td><%= category.name %></td>
         <td><%= category.heading %></td>
-        <td><%= category.budget %></td>
+        <td><%= number_to_currency(category.budget, precision: 0) %><%= " (#{number_to_currency((category.budget * 12),precision: 0) }/yr)" if category.infrequent %></td>
         <td><%= category.infrequent %></td>
         <td><%= category.sort %></td>
         <td><%= link_to 'Edit', edit_category_path(category), class: "btn btn-default" %></td>
@@ -29,7 +29,7 @@
     <tr>
       <td><b>Total Income</b></td>
       <td></td>
-      <td><b><%= @categories.where(expense:false).sum(:budget) %></b></td>
+      <td><b><%= number_to_currency(@categories.where(expense:false).sum(:budget),precision: 0) %></b></td>
       <td></td>
       <td></td>
       <td></td>
@@ -57,7 +57,7 @@
       <tr>
         <td><%= category.name %></td>
         <td><%= category.heading %></td>
-        <td><%= category.budget %></td>
+        <td><%= number_to_currency(category.budget, precision: 0) %><%= " (#{number_to_currency((category.budget * 12),precision: 0) }/yr)" if category.infrequent %></td>
         <td><%= category.infrequent %></td>
         <td><%= category.sort %></td>
         <td><%= link_to 'Edit', edit_category_path(category), class: "btn btn-default" %></td>
@@ -67,7 +67,7 @@
     <tr>
       <td><b>Total Expenses</b></td>
       <td></td>
-      <td><b><%= @categories.where(expense:true).sum(:budget) %></b></td>
+      <td><b><%= number_to_currency(@categories.where(expense:true).sum(:budget),precision: 0) %></b></td>
       <td></td>
       <td></td>
       <td></td>
