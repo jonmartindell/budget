@@ -26,18 +26,35 @@
     </div>
     <% categories.each do |category| %>
       <div class="row category-rows">
-        <h6 class="col-xs-4 text-nowrap"><%=category.name[0,13] %></h6>
-        <h6 class="col-xs-2 text-nowrap">
-        <small>$<%=category.spent_to_eom(@month)%><small>/<%=category.budget_to_eom(@month)%></small>
-        </h6>
-        <h6 class="col-xs-3 text-nowrap">
-          $<%=category.spent(@month)%><small>/<%=category.budget%></small>
-        </h6>
-        <div class="col-xs-1">
-          <%= link_to new_transaction_path(category: category.id), class: "btn btn-success" do %>
-            <i class="glyphicon glyphicon-plus"></i>
-          <% end %>
-        </div>
+        <% if category.infrequent %>
+          <h6 class="col-xs-4 text-nowrap"><%=category.name[0,13] %><sup>*</sup></h6>
+          <h6 class="col-xs-2 text-nowrap">
+            <small> $<%=category.spent_to_eom(@month)%><small> /$<%=category.budget * 12%></small> </small>
+          </h6>
+          <h6 class="col-xs-3 text-nowrap">
+            $<%=category.spent(@month)%><small>/<%=category.budget%></small>
+          </h6>
+          <div class="col-xs-1">
+            <%= link_to new_transaction_path(category: category.id), class: "btn btn-success" do %>
+              <i class="glyphicon glyphicon-plus"></i>
+            <% end %>
+          </div>
+
+        <% else %>
+
+          <h6 class="col-xs-4 text-nowrap"><%=category.name[0,13] %></h6>
+          <h6 class="col-xs-2 text-nowrap">
+            <small>$<%=category.spent_to_eom(@month)%><small>/<%=category.budget_to_eom(@month)%></small></small>
+          </h6>
+          <h6 class="col-xs-3 text-nowrap">
+            $<%=category.spent(@month)%><small>/<%=category.budget%></small>
+          </h6>
+          <div class="col-xs-1">
+            <%= link_to new_transaction_path(category: category.id), class: "btn btn-success" do %>
+              <i class="glyphicon glyphicon-plus"></i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   <% end %>
