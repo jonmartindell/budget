@@ -88,9 +88,9 @@
           </h6>
           <h6 class="col-xs-1">
             <% if category.status(@month) == :warning %>
-              <span class="text-warning glyphicon glyphicon-warning-sign"></span>
+              <span class="text-warning glyphicon glyphicon-warning-sign" data-toggle="tooltip" title="<%=category.status_reason(@month)%>"></span>
             <% elsif category.status(@month) == :danger %>
-              <span class="text-danger glyphicon glyphicon-alert"></span>
+              <span class="text-danger glyphicon glyphicon-alert" data-toggle="tooltip" title="<%=category.status_reason(@month)%>"></span>
             <% end %>
           </h6>
           <h6 class="col-xs-2 text-nowrap">
@@ -105,9 +105,9 @@
           </h6>
           <h6 class="col-xs-1">
             <% if category.status(@month) == :warning %>
-              <span class="text-warning glyphicon glyphicon-warning-sign"></span>
+              <span class="text-warning glyphicon glyphicon-warning-sign" data-toggle="tooltip" title="<%=category.status_reason(@month)%>"></span>
             <% elsif category.status(@month) == :danger %>
-              <span class="text-danger glyphicon glyphicon-alert"></span>
+              <span class="text-danger glyphicon glyphicon-alert" data-toggle="tooltip" title="<%=category.status_reason(@month)%>"></span>
             <% end %>
           </h6>
           <h6 class="col-xs-2 text-nowrap">
@@ -124,3 +124,8 @@
   <% end %>
 </div>
 
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>

@@ -80,4 +80,44 @@ class Category < ActiveRecord::Base
       return :success
     end
   end
+
+  def status_reason(month)
+    if infrequent
+      yearly_max = budget * 12
+      return "Exceeded budget for year" if (spent_to_eom(month) >= yearly_max)
+
+      # warning if tracking that you'll spend allll the money too soon
+      percentage_yearly_spent = spent_to_eom(month) / yearly_max.to_f
+      percentage_of_year = month.to_date.end_of_month.yday / 365.to_f
+      case
+      when percentage_yearly_spent >= 0.40 && percentage_of_year <= 0.10
+        return "Spending yearly amount too quickly in year"
+      when percentage_yearly_spent >= 0.50 && percentage_of_year <= 0.20
+        return "Spending yearly amount too quickly in year"
+      when percentage_yearly_spent >= 0.60 && percentage_of_year <= 0.30
+        return "Spending yearly amount too quickly in year"
+      when percentage_yearly_spent >= 0.70 && percentage_of_year <= 0.40
+        return "Spending yearly amount too quickly in year"
+      when percentage_yearly_spent >= 0.80 && percentage_of_year <= 0.60
+        return "Spending yearly amount too quickly in year"
+      when percentage_yearly_spent >= 0.90 && percentage_of_year <= 0.90
+        return "Spending yearly amount too quickly in year"
+      else
+        return ""
+      end
+    else
+      return "Exceeded budget for #{month}" if (spent_to_eom(month) > budget_to_eom(month))
+      if month == "January"
+        percentage_of_ytd_spent = 0.0
+      else
+        percentage_of_ytd_spent = ytd_spent(month) / budget_to_som(month).to_f
+      end
+      percentage_of_month_spent = spent(month) / budget
+      return "Getting too close to exceeding YTD budget" if percentage_of_ytd_spent >= 0.90 && percentage_of_month_spent >= 0.90
+      #
+      # Otherwise
+      return ""
+    end
+
+  end
 end
