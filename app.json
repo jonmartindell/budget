@@ -1,0 +1,12 @@
+{
+  "name": "Budget",
+  "description": "A positive psychology based budgeting app.",
+  "website": "https://github.com/jonmartindell/budget",
+  "addons": ["heroku-postgresql:hobby-dev"],
+  "env": {
+    "RAILS_ENV": "production",
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
+}
