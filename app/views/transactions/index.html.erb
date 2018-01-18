@@ -5,6 +5,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Month</th>
       <th>Who</th>
       <th>Category</th>
       <th>Merchant</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
+        <td><%= transaction.date.strftime("%B") %></td>
         <td><%= transaction.user.try(:display_name) %></td>
         <td><%= transaction.category.name %></td>
         <td><%= transaction.merchant %></td>
@@ -33,3 +35,13 @@
 <br>
 
 <%= link_to 'New Transaction', new_transaction_path, class: "btn btn-success" %>
+
+<script src="excel-bootstrap-table-filter-bundle.js"></script>
+<link rel="stylesheet" href="excel-bootstrap-table-filter-style.css" />
+<script>
+    // Use the plugin once the DOM has been loaded.
+    $(function () {
+      // Apply the plugin
+      $('table').excelTableFilter();
+    });
+</script>
