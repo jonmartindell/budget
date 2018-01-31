@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate
   def authenticate
     # first see if they already have a session
-    if (user = User.find(session[:current_user_id])
+    if user = User.find(session[:current_user_id])
       session[:current_user_id] = user.id
       @current_user = user
     else
