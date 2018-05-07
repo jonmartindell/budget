@@ -38,6 +38,7 @@ class Category < ActiveRecord::Base
   end
 
   def yearly_percent_remaining(month)
+    return 'na' unless budget > 0
     budget_for_year = budget * 12
     (remaining_for_year(month) / budget_for_year.to_f * 100).to_i
   end
