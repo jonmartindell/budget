@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Income</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Heading</th>
+      <th>Budget (yr)</th>
+      <th>Actual (yr)</th>
+      <th>Difference</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.where(expense: false).order(:heading, :name).each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.heading %></td>
+        <td><%= number_to_currency(category.budget * 12, precision: 0) %></td>
+        <td><%= number_to_currency(category.ytd_spent("December"), precision: 0) %></td>
+        <td><%= number_to_currency(category.ytd_spent("December") - (category.budget*12),precision: 0) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><b>Total Income</b></td>
+      <td></td>
+      <td><b><%= number_to_currency(@categories.where(expense:false).sum(:budget) * 12,precision: 0) %></b></td>
+      <td><b><%= number_to_currency(@categories.where(expense:false).to_a.sum { |c| c.transactions.sum(:amount).to_i },precision: 0) %></b></td>
+      <td><b><%= number_to_currency(@categories.where(expense:false).to_a.sum { |c| c.transactions.sum(:amount).to_i } - (@categories.where(expense:false).sum(:budget) * 12),precision: 0) %></b></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>Expenses</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Heading</th>
+      <th>Budget (yr)</th>
+      <th>Actual (yr)</th>
+      <th>Difference</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.where(expense: true).order(:heading, :name).each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.heading %></td>
+        <td><%= number_to_currency(category.budget * 12, precision: 0) %></td>
+        <td><%= number_to_currency(category.ytd_spent("December"), precision: 0) %></td>
+        <td><%= number_to_currency((category.budget * 12) - category.ytd_spent("December"), precision: 0) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><b>Total Expenses</b></td>
+      <td></td>
+      <td><b><%= number_to_currency(@categories.where(expense:true).sum(:budget) * 12,precision: 0) %></b></td>
+      <td><b><%= number_to_currency(@categories.where(expense:true).to_a.sum { |c| c.transactions.sum(:amount).to_i },precision: 0) %></b></td>
+      <td><b><%= number_to_currency((@categories.where(expense:true).sum(:budget) * 12) - @categories.where(expense:true).to_a.sum { |c| c.transactions.sum(:amount).to_i } ,precision: 0) %></b></td>
+    </tr>
+  </tbody>
+</table>
