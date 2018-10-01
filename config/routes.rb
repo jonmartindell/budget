@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :transactions
   resources :categories
-  get 'summary' => 'categories#summary'
+  get 'summary' => 'categories#summary', as: :summary
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
