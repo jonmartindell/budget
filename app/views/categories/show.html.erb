@@ -25,5 +25,33 @@
   <%= @category.expense %>
 </p>
 
+<h1>Recent Transactions</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Who</th>
+      <th>Category</th>
+      <th>Merchant</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Transaction.where(category: @category).last(20).each do |transaction| %>
+      <tr>
+        <td><%= transaction.date.strftime("%B") %></td>
+        <td><%= transaction.user.try(:display_name) %></td>
+        <td><%= transaction.category.name %></td>
+        <td><%= transaction.merchant %></td>
+        <td><%= transaction.amount %></td>
+        <td><%= transaction.date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

@@ -27,7 +27,7 @@
     <% categories.each do |category| %>
       <div class="row category-rows">
         <% if category.infrequent %>
-          <h6 class="col-xs-4 text-nowrap"><%=category.name[0,13] %><sup>*</sup></h6>
+          <h6 class="col-xs-4 text-nowrap"><%= link_to category.name[0,13], category_path(category) %><sup>*</sup></h6>
           <h6 class="col-xs-2 text-nowrap">
             <small> $<%=category.spent_to_eom(@month)%><small> /$<%=category.budget * 12%></small> </small>
           </h6>
@@ -42,7 +42,7 @@
 
         <% else %>
 
-          <h6 class="col-xs-4 text-nowrap"><%=category.name[0,13] %></h6>
+          <h6 class="col-xs-4 text-nowrap"><%= link_to category.name[0,13], category_path(category) %></h6>
           <h6 class="col-xs-2 text-nowrap">
             <small>$<%=category.spent_to_eom(@month)%><small>/<%=category.budget_to_eom(@month)%></small></small>
           </h6>
@@ -80,7 +80,7 @@
 
 
         <% if category.infrequent %>
-          <h6 class="col-xs-4 text-nowrap"><%=category.name[0,13] %><sup>*</sup></h6>
+          <h6 class="col-xs-4 text-nowrap"><%= link_to category.name[0,13], category_path(category) %><sup>*</sup></h6>
           <h6 class="col-xs-2 text-nowrap">
             <small class="text-<%= category.status(@month) %>">
               $<%=category.remaining_for_year(@month)%><small> (<%=category.yearly_percent_remaining(@month)%>% rem)</small>
@@ -99,7 +99,7 @@
 
 
         <% else %>
-          <h6 class="col-xs-4 text-nowrap"><%=category.name[0,13] %></h6>
+          <h6 class="col-xs-4 text-nowrap"><%= link_to category.name[0,13], category_path(category) %></h6>
           <h6 class="col-xs-2 text-nowrap">
             <small class="text-<%= category.status(@month) %>">$<%=category.budget_to_som(@month) - category.ytd_spent(@month) %></small>
           </h6>
