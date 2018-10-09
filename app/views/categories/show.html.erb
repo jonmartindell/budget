@@ -40,7 +40,7 @@
   </thead>
 
   <tbody>
-    <% Transaction.where(category: @category).last(20).each do |transaction| %>
+    <% Transaction.where(category: @category).reorder(date: :desc).first(20).each do |transaction| %>
       <tr>
         <td><%= transaction.date.strftime("%B") %></td>
         <td><%= transaction.user.try(:display_name) %></td>
