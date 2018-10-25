@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate
   def authenticate
+    if username = cookies.permanent[:current_username]
+      @current_user = User.find_by(username: username)
+      return
+    end
+
     if user = authenticate_with_http_basic { |u, p| User.find_by(username: u) }
+      cookies.permanent[:current_username] = user.username
       @current_user = user
     else
       request_http_basic_authentication
