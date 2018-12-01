@@ -19,8 +19,8 @@
         <td><%= category.name %></td>
         <td><%= category.heading %></td>
         <td><%= number_to_currency(category.budget * 12, precision: 0) %></td>
-        <td><%= number_to_currency(category.ytd_spent("December"), precision: 0) %></td>
-        <td><%= number_to_currency(category.ytd_spent("December") - (category.budget*12),precision: 0) %></td>
+        <td><%= number_to_currency(category.spent_to_eom("December"), precision: 0) %></td>
+        <td><%= number_to_currency(category.spent_to_eom("December") - (category.budget*12),precision: 0) %></td>
       </tr>
     <% end %>
     <tr>
@@ -53,8 +53,8 @@
         <td><%= category.name %></td>
         <td><%= category.heading %></td>
         <td><%= number_to_currency(category.budget * 12, precision: 0) %></td>
-        <td><%= number_to_currency(category.ytd_spent("December"), precision: 0) %></td>
-        <td><%= number_to_currency((category.budget * 12) - category.ytd_spent("December"), precision: 0) %></td>
+        <td><%= number_to_currency(category.spent_to_eom("December"), precision: 0) %></td>
+        <td><%= number_to_currency((category.budget * 12) - category.spent_to_eom("December"), precision: 0) %></td>
       </tr>
     <% end %>
     <tr>
