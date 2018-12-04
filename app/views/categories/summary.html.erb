@@ -7,8 +7,8 @@
     <tr>
       <th>Name</th>
       <th>Heading</th>
-      <th>Budget (yr)</th>
-      <th>Actual (yr)</th>
+      <th>Budget</th>
+      <th>Actual</th>
       <th>Difference</th>
     </tr>
   </thead>
@@ -41,8 +41,9 @@
     <tr>
       <th>Name</th>
       <th>Heading</th>
-      <th>Budget (yr)</th>
-      <th>Actual (yr)</th>
+      <th>Budget</th>
+      <th>Transfers</th>
+      <th>Actual</th>
       <th>Difference</th>
     </tr>
   </thead>
@@ -53,15 +54,17 @@
         <td><%= category.name %></td>
         <td><%= category.heading %></td>
         <td><%= number_to_currency(category.budget * 12, precision: 0) %></td>
-        <td><%= number_to_currency(category.spent_to_eom("December"), precision: 0) %></td>
-        <td><%= number_to_currency((category.budget * 12) - category.spent_to_eom("December"), precision: 0) %></td>
+        <td><%= number_to_currency(category.transactions.transfers.sum(:amount).to_i, precision: 0) %></td>
+        <td><%= number_to_currency(category.transactions.non_transfers.sum(:amount).to_i, precision: 0) %></td>
+        <td><%= number_to_currency((category.budget * 12) + category.transactions.transfers.sum(:amount) - category.transactions.non_transfers.sum(:amount), precision: 0) %></td>
       </tr>
     <% end %>
     <tr>
       <td><b>Total Expenses</b></td>
       <td></td>
       <td><b><%= number_to_currency(@categories.where(expense:true).sum(:budget) * 12,precision: 0) %></b></td>
-      <td><b><%= number_to_currency(@categories.where(expense:true).to_a.sum { |c| c.transactions.sum(:amount).to_i },precision: 0) %></b></td>
+      <td><b><%= number_to_currency(@categories.where(expense:true).to_a.sum { |c| c.transactions.transfers.sum(:amount).to_i },precision: 0) %></b></td>
+      <td><b><%= number_to_currency(@categories.where(expense:true).to_a.sum { |c| c.transactions.non_transfers.sum(:amount).to_i },precision: 0) %></b></td>
       <td><b><%= number_to_currency((@categories.where(expense:true).sum(:budget) * 12) - @categories.where(expense:true).to_a.sum { |c| c.transactions.sum(:amount).to_i } ,precision: 0) %></b></td>
     </tr>
   </tbody>

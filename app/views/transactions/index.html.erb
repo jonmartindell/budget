@@ -11,6 +11,7 @@
       <th>Merchant</th>
       <th>Amount</th>
       <th>Date</th>
+      <th>Tfer</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
         <td><%= transaction.merchant %></td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.date %></td>
+        <td><%= '⇆' if transaction.transfer %></td>
         <td><%= link_to 'Show', transaction, class: "btn btn-primary" %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction), class: "btn btn-warning" %></td>
         <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>

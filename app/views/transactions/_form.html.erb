@@ -48,11 +48,16 @@
     </div>
   </div>
 
+  <% if @transaction.category.expense %>
   <div class="row form-group">
     <div class="form-group col-xs-12">
-      <%= f.text_field :note, class: "form-control", placeholder: "Note" %>
+      <div class="checkbox-inline">
+        <%= f.check_box :transfer, class: "form-check-input" %>
+        <%= f.label :transfer, "Transfer" %>
+      </div>
     </div>
   </div>
+  <% end %>
 
   <div class="row form-group">
     <div class="col-xs-5">
