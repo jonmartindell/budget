@@ -1,4 +1,4 @@
-class AddTransferToTransactions < ActiveRecord::Migration
+class AddTransferToTransactions < ActiveRecord::Migration[5.2]
   def change
     add_column :transactions, :transfer, :boolean
   end

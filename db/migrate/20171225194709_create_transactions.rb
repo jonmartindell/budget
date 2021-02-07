@@ -1,4 +1,4 @@
-class CreateTransactions < ActiveRecord::Migration
+class CreateTransactions < ActiveRecord::Migration[5.2]
   def change
     create_table :transactions do |t|
       t.belongs_to :user, index: true, foreign_key: true
