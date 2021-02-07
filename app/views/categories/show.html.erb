@@ -36,11 +36,12 @@
       <th>Merchant</th>
       <th>Amount</th>
       <th>Date</th>
+      <th>Edit</th>
     </tr>
   </thead>
 
   <tbody>
-    <% Transaction.where(category: @category).reorder(date: :desc).first(20).each do |transaction| %>
+    <% Transaction.where(category: @category).reorder(date: :desc).each do |transaction| %>
       <tr>
         <td><%= transaction.date.strftime("%B") %></td>
         <td><%= transaction.user.try(:display_name) %></td>
@@ -48,6 +49,7 @@
         <td><%= transaction.merchant %></td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.date %></td>
+        <td><%= link_to 'Edit', edit_transaction_path(transaction), class: "btn btn-warning" %></td>
       </tr>
     <% end %>
   </tbody>
