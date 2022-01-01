@@ -13,7 +13,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     if params[:category]
-      @transaction = Transaction.new(category_id: params[:category])
+      @transaction = Transaction.new(category_id: params[:category], date: DateTime.now)
     else
       @transaction = Transaction.new
     end
