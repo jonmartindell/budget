@@ -10,24 +10,11 @@ class ApplicationController < ActionController::Base
       return
     end
 
-    if user = user_input
+    if user = authenticate_with_http_basic { |u, p| User.find_by(username: u) }
       cookies.permanent[:current_username] = user.username
       @current_user = user
     else
       request_http_basic_authentication
     end
-  end
-
-  private
-
-  def user_input
-    authenticate_with_http_basic do |username,password|
-      return nil unless valid_usernames.include?(username)
-      User.find_or_create_by(username: username)
-    end
-  end
-
-  def valid_usernames
-    ENV['VALID_USERNAMES'].split(';')
   end
 end
